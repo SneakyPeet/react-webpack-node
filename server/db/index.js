@@ -5,14 +5,11 @@ let dbConfig = null;
 
 /* use inline requires for conditional loading */
 switch (DB_TYPE) {
-  case DB_TYPES.MONGO:
-    dbConfig = require('./mongo');
+  case DB_TYPES.MOCK:
+    dbConfig = require('./mock');
     break;
-  case DB_TYPES.POSTGRES:
-    dbConfig = require('./postgres');
-    break;
-  case DB_TYPES.NONE:
-    dbConfig = require('./none');
+  case DB_TYPES.DOCUMENTDB:
+    dbConfig = require('./documentDb');
     break;
   default:
     throw new Error(`No database type '${DB_TYPE}' found`);
@@ -20,7 +17,6 @@ switch (DB_TYPE) {
 
 export const connect = dbConfig.connect;
 export const controllers = dbConfig.controllers;
-export const passport = dbConfig.passport;
 export const session = dbConfig.session;
 
 export default dbConfig.default;
