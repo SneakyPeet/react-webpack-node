@@ -2,8 +2,6 @@ import express from 'express';
 import session from 'express-session';
 import bodyParser from 'body-parser';
 import path from 'path';
-import flash from 'express-flash';
-import methodOverride from 'method-override';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { sessionSecret } from './secrets';
 import { DB_TYPE, ENV } from './serverConfig';
@@ -22,7 +20,6 @@ export default (app) => {
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-  app.use(methodOverride());
   app.use(express.static(path.join(__dirname, '../..', 'public')));
 
   // I am adding this here so that the Heroku deploy will work
@@ -87,5 +84,4 @@ export default (app) => {
   console.log('--------------------------');
 
   app.use(session(sess));
-  app.use(flash());
 };

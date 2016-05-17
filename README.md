@@ -277,3 +277,10 @@ Credits to [webpack-server-side-example](https://github.com/webpack/react-webpac
 License
 ===============
 MIT
+
+TODO
+============
+remove es6-polyfill ?
+remove node-libs-browser?
+
+remove express-session
