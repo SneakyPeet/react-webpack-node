@@ -1,6 +1,6 @@
 import express from 'express';
 import webpack from 'webpack';
-import { ENV } from './config/appConfig';
+import { ENV } from './config/serverConfig';
 import { connect as connectDatabase } from './db';
 import expressConfig from './config/express';
 import routesConfig from './config/routes';

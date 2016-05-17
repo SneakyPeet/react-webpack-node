@@ -6,7 +6,7 @@ import flash from 'express-flash';
 import methodOverride from 'method-override';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { sessionSecret } from './secrets';
-import { DB_TYPE, ENV } from './appConfig';
+import { DB_TYPE, ENV } from './serverConfig';
 import { session as dbSession } from '../db';
 
 export default (app) => {
