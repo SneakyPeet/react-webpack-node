@@ -1,3 +1,4 @@
+import { Map } from 'immutable';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -10,9 +11,16 @@ import preRenderMiddleware from 'middlewares/preRenderMiddleware';
 // Grab the state from a global injected into
 // server-generated HTML
 const initialState = window.__INITIAL_STATE__;
+console.log(initialState);
 
 const store = configureStore(initialState, browserHistory);
-const history = syncHistoryWithStore(browserHistory, store);
+
+// option selectLocationState To Use immutable.js
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState (state) {
+    return state.get('routing').toJS();
+  }
+});
 const routes = createRoutes(store);
 
 /**

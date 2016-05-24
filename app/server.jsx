@@ -6,6 +6,7 @@ import { createMemoryHistory, match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
 import createRoutes from 'routes';
 import configureStore from 'store/configureStore';
+import getInitialState from 'store/getInitialState';
 import preRenderMiddleware from 'middlewares/preRenderMiddleware';
 import header from 'components/Meta';
 
@@ -23,14 +24,9 @@ axios.defaults.baseURL = `http://${clientConfig.host}:${clientConfig.port}`;
  * and pass it into the Router.run function.
  */
 export default function render(req, res) {
+  const initalState = getInitialState();
   const history = createMemoryHistory();
-  const store = configureStore({
-    user: {
-      isWaiting: false,
-      message: '',
-      isLogin: true
-    }
-  }, history);
+  const store = configureStore(initalState, history);
   const routes = createRoutes();
 
   /*
@@ -74,7 +70,7 @@ export default function render(req, res) {
             <RouterContext {...props} />
           </Provider>
         );
-
+        console.log('here');
         res.status(200).send(`
           <!doctype html>
           <html ${header.htmlAttributes.toString()}>

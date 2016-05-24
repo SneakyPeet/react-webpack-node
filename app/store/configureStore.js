@@ -1,3 +1,4 @@
+import { fromJS } from 'immutable';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
@@ -19,7 +20,7 @@ export default function configureStore(initialState, history) {
     middleware.push(createLogger());
   }
 
-  const store = createStore(rootReducer, initialState, compose(
+  const store = createStore(rootReducer, fromJS(initialState), compose(
     applyMiddleware(...middleware),
     typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
   ));
